@@ -1,6 +1,7 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-
+const path = require('path');
+const logger = require('morgan');
+const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 
 const config = require('../config.js');
@@ -10,7 +11,10 @@ const errors = require('../network/errors');
 
 const app = express();
 
-app.use(bodyParser.json());
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
 const swaggerDoc = require('./swagger.json');
 

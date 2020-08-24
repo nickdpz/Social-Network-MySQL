@@ -6,7 +6,7 @@ const TABLA = 'user';
 module.exports = function (injectedStore) {
     let store = injectedStore;
     if (!store) {
-        store = require('../../../store/dummy');
+        store = require('../../../store/mysql');
     }
 
     function list() {
@@ -34,7 +34,7 @@ module.exports = function (injectedStore) {
                 id: user.id,
                 username: user.username,
                 password: body.password,
-            })
+            },!!body.id)
         }
 
         return store.upsert(TABLA, user);
