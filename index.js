@@ -4,10 +4,10 @@ const logger = require('morgan');
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 
-const config = require('../config.js');
+const config = require('./config.js');
 const user = require('./components/user/network');
 const auth = require('./components/auth/network');
-const errors = require('../network/errors');
+const errors = require('./network/errors');
 
 const app = express();
 

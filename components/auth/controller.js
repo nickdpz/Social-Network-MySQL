@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 
-const auth = require('../../../auth');
+const auth = require('../../auth');
 const TABLA = 'auth';
 
 module.exports = function (injectedStore) {
@@ -15,8 +15,7 @@ module.exports = function (injectedStore) {
         return bcrypt.compare(password, data.password)
             .then(sonIguales => {
                 if (sonIguales === true) {
-                    // Generar token;
-                    return auth.sign(data)
+                    return auth.sign({ id: data.id, username: data.username })
                 } else {
                     throw new Error('Informacion invalida');
                 }
